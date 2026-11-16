@@ -1,0 +1,5 @@
+org.springframework.boot.context.config.ConfigDataLocationResolver=\
+uk.org.clayson.spring.appconfig.configdata.AppConfigConfigDataLocationResolver
+
+org.springframework.boot.context.config.ConfigDataLoader=\
+uk.org.clayson.spring.appconfig.configdata.AppConfigConfigDataLoader

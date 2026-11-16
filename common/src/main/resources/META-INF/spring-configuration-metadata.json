@@ -1,0 +1,64 @@
+{
+  "properties": [
+    {
+      "name": "appconfig.application",
+      "type": "java.lang.String",
+      "description": "AWS AppConfig application name. Can be omitted when the spring.config.import location contains the application name."
+    },
+    {
+      "name": "appconfig.environment",
+      "type": "java.lang.String",
+      "defaultValue": "default",
+      "description": "AWS AppConfig environment name."
+    },
+    {
+      "name": "appconfig.profile",
+      "type": "java.lang.String",
+      "description": "AWS AppConfig configuration profile name. Defaults to the application name. Note that this is not a Spring profile."
+    },
+    {
+      "name": "appconfig.region",
+      "type": "java.lang.String",
+      "description": "AWS region used to call AppConfig. When omitted the AWS SDK default region provider chain is used."
+    },
+    {
+      "name": "appconfig.endpoint",
+      "type": "java.net.URI",
+      "description": "Custom AWS AppConfig endpoint, for example when using LocalStack."
+    },
+    {
+      "name": "appconfig.content-type",
+      "type": "java.lang.String",
+      "description": "Format of the hosted configuration: yaml, json or properties. When omitted the Content-Type returned by AppConfig is used, falling back to yaml."
+    },
+    {
+      "name": "appconfig.minimum-poll-interval",
+      "type": "java.time.Duration",
+      "defaultValue": "15s",
+      "description": "Minimum poll interval sent when starting an AppConfig configuration session. Must be at least 15 seconds."
+    },
+    {
+      "name": "appconfig.prefix",
+      "type": "java.lang.String",
+      "description": "Optional prefix added to every property name loaded from AppConfig."
+    },
+    {
+      "name": "appconfig.fail-fast",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "Whether a failure to read AppConfig should stop application startup. Optional locations are always ignored when not found."
+    },
+    {
+      "name": "appconfig.refresh.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "Whether to poll AppConfig and refresh the application context when the configuration changes. Requires Spring Cloud Context; enabled by default when it is present."
+    },
+    {
+      "name": "appconfig.refresh.interval",
+      "type": "java.time.Duration",
+      "defaultValue": "30s",
+      "description": "Time between AppConfig polls. Keep this at or above appconfig.minimum-poll-interval."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+name: Pull Request Build
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and test both Spring Boot generations
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Build and test
+        run: ./gradlew clean build --no-daemon --stacktrace
+
+      - name: Run AppConfig integration test (AWS Emulator)
+        env:
+          APPCONFIG_IT_MODE: emulator
+        run: ./gradlew :example:integrationTest --no-daemon --stacktrace
